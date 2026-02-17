@@ -13,7 +13,7 @@ export function WhyChoosingUs() {
     <section className="py-20">
       <Container className="grid grid-cols-[auto_1fr] gap-x-16 items-start">
         {/* Section title — node 1:55 */}
-        <h2 className="font-gilroy text-[42px] font-bold leading-[49px] text-[dark]">
+        <h2 className="font-gilroy text-[42px] font-bold leading-[49px] text-dark">
           Why
           <br />
           Choosing Us
@@ -24,12 +24,12 @@ export function WhyChoosingUs() {
           {features.map((feature) => (
             <div key={feature.title} className="flex flex-col">
               {/* Card title — Gilroy-Bold 24px, opacity 0.9 */}
-              <h3 className="font-gilroy text-[24px] font-bold leading-[28px] text-[dark]/90">
+              <h3 className="font-gilroy text-[24px] font-bold leading-[28px] text-dark/90">
                 {feature.title}
               </h3>
 
               {/* Card description — Gilroy-Regular 16px, opacity 0.8, line-height 185% */}
-              <p className="mt-5 w-[284px] font-gilroy text-[16px] font-normal leading-[29.6px] text-[dark]/80">
+              <p className="mt-5 w-[284px] font-gilroy text-[16px] font-normal leading-[29.6px] text-dark/80">
                 {feature.description}
               </p>
 

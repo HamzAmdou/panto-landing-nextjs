@@ -7,7 +7,7 @@ export function smoothScrollTo(elementId: string, offset = 80) {
   if (!element) return;
 
   const elementPosition = element.getBoundingClientRect().top;
-  const offsetPosition = elementPosition + window.pageYOffset - offset;
+  const offsetPosition = elementPosition + window.scrollY - offset;
 
   window.scrollTo({
     top: offsetPosition,

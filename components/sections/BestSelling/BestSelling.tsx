@@ -15,9 +15,9 @@ const ProductCard = memo(function ProductCard({ product }: { product: Product })
   const rating = product.rating ?? 5; // Default 5 stars if no rating
 
   return (
-    <div className="group flex h-[442px] w-[268px] flex-col overflow-hidden rounded-[20px] bg-white shadow-sm transition-all duration-300 hover:shadow-lg">
+    <div className="group flex w-full flex-col overflow-hidden rounded-[20px] bg-white shadow-sm transition-all duration-300 hover:shadow-lg">
       {/* Image area */}
-      <div className="flex h-[312px] items-center justify-center bg-[#FAFAFA] p-8">
+      <div className="flex aspect-[268/312] items-center justify-center bg-[#FAFAFA] p-8">
         <Image
           src={product.image}
           alt={product.name}
@@ -105,7 +105,7 @@ export function BestSelling() {
     <section className="bg-bg-light-2 py-20">
       <Container className="flex flex-col items-center">
         {/* Heading */}
-        <h2 className="font-gilroy text-[42px] font-bold leading-[49px] text-[dark]">
+        <h2 className="font-gilroy text-[42px] font-bold leading-[49px] text-dark">
           Best Selling Product
         </h2>
 
@@ -119,8 +119,8 @@ export function BestSelling() {
               aria-selected={activeTab === cat}
               className={`rounded-[32px] px-6 py-2.5 font-gilroy text-[18px] transition-all duration-200 ${
                 activeTab === cat
-                  ? "bg-white font-medium text-[dark]/80 shadow-sm"
-                  : "font-normal text-[dark]/80 hover:text-[dark]"
+                  ? "bg-white font-medium text-dark/80 shadow-sm"
+                  : "font-normal text-dark/80 hover:text-dark"
               }`}
               style={{ minWidth: "84px" }}
             >

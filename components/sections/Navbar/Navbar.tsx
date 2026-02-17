@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { smoothScrollTo } from "@/lib/utils/smoothScroll";
@@ -41,21 +42,21 @@ function DropdownArrow() {
   );
 }
 
-/**
- * Navbar — pixel-perfect from Figma nodes 1:18, 1:10, 1:31, 1:35
- *
- * Logo "Panto": rel(80, 40) — Gilroy-Bold 28px, white, tracking 0.28px
- * Nav group: rel(493, 41) — Gilroy-Medium 18px, white
- *   Furniture (with dropdown arrow 1:14), Shop, About Us, Contact
- *   Gaps: Furniture→Shop=66px, Shop→AboutUs=43px, AboutUs→Contact=64px
- * Bag icon: rel(1326, 41) — 34×34, white Iconly/Bold/Bag
- * Cart badge: rel(1346, 44) — orange ellipse overlapping bag top-right
- */
+const NAV_LINK_CLASS =
+  "font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded";
+
 export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  function handleNav(target: string) {
+    setMobileOpen(false);
+    smoothScrollTo(target);
+  }
+
   return (
     <header className="absolute inset-x-0 top-0 z-20 pt-10">
       <Container className="grid h-8.75 grid-cols-[1fr_auto_1fr] items-center">
-        {/* Logo — node 1:18 */}
+        {/* Logo */}
         <Link
           href="/"
           className="justify-self-start font-gilroy text-[28px] font-bold leading-none tracking-[0.28px] text-white"
@@ -63,41 +64,61 @@ export function Navbar() {
           Panto
         </Link>
 
-        {/* Nav links — node 1:10 */}
+        {/* Desktop nav */}
         <nav className="hidden items-center md:flex">
           <button
-            onClick={() => smoothScrollTo("products")}
-            className="flex items-center font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
+            onClick={() => handleNav("products")}
+            className={`flex items-center ${NAV_LINK_CLASS}`}
           >
             Furniture
             <DropdownArrow />
           </button>
-          <button
-            onClick={() => smoothScrollTo("products")}
-            className="ml-16.5 font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
-          >
+          <button onClick={() => handleNav("products")} className={`ml-16.5 ${NAV_LINK_CLASS}`}>
             Shop
           </button>
-          <button
-            onClick={() => smoothScrollTo("experience")}
-            className="ml-15.5 font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
-          >
+          <button onClick={() => handleNav("experience")} className={`ml-15.5 ${NAV_LINK_CLASS}`}>
             About Us
           </button>
-          <button
-            onClick={() => smoothScrollTo("testimonials")}
-            className="ml-16 font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
-          >
+          <button onClick={() => handleNav("testimonials")} className={`ml-16 ${NAV_LINK_CLASS}`}>
             Contact
           </button>
         </nav>
 
-        {/* Bag + badge — nodes 1:31 + 1:35 */}
-        <div className="relative justify-self-end">
-          <BagIcon />
-          <CartBadge />
+        {/* Right side: hamburger (mobile) + bag */}
+        <div className="flex items-center gap-4 justify-self-end">
+          {/* Hamburger button — mobile only */}
+          <button
+            onClick={() => setMobileOpen((o) => !o)}
+            className="flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+          >
+            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${mobileOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </button>
+
+          {/* Bag + badge */}
+          <div className="relative">
+            <BagIcon />
+            <CartBadge />
+          </div>
         </div>
       </Container>
+
+      {/* Mobile menu */}
+      <div
+        className={`overflow-hidden transition-all duration-300 md:hidden ${
+          mobileOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <Container className="flex flex-col gap-4 bg-dark-navy/90 py-6 backdrop-blur-sm">
+          <button onClick={() => handleNav("products")} className={NAV_LINK_CLASS}>Furniture</button>
+          <button onClick={() => handleNav("products")} className={NAV_LINK_CLASS}>Shop</button>
+          <button onClick={() => handleNav("experience")} className={NAV_LINK_CLASS}>About Us</button>
+          <button onClick={() => handleNav("testimonials")} className={NAV_LINK_CLASS}>Contact</button>
+        </Container>
+      </div>
     </header>
   );
 }

@@ -76,7 +76,7 @@ export function Footer() {
                     aria-label={social.ariaLabel}
                     className={`flex items-center space-x-2 ${FOOTER_LINK_CLASS}`}
                   >
-                    <IconComponent aria-hidden="true" />
+                    <IconComponent aria-hidden="true" className="text-dark-navy" />
                     <span>{social.name}</span>
                   </Link>
                 );

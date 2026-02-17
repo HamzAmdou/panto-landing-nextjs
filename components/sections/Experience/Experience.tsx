@@ -30,13 +30,13 @@ export function Experience() {
             </h3>
 
             {/* Heading */}
-            <h2 className="mb-4 font-gilroy text-[42px] font-bold leading-12.25 text-[dark]">
+            <h2 className="mb-4 font-gilroy text-[42px] font-bold leading-12.25 text-dark">
               We Provide You The <br />
               Best Experience
             </h2>
 
             {/* Description */}
-            <p className="mb-5 font-gilroy text-[18px] leading-[33.3px] text-[dark]/80">
+            <p className="mb-5 font-gilroy text-[18px] leading-[33.3px] text-dark/80">
               You don&apos;t have to worry about the result because all of these interiors are made by
               people who are professionals in their fields with an elegant and luxurious style and
               with premium quality materials

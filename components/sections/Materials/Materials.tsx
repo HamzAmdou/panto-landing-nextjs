@@ -19,14 +19,14 @@ export function Materials() {
             </h3>
 
             {/* Heading */}
-            <h2 className="mb-4 font-gilroy text-[42px] font-bold leading-12.25 text-[dark]">
+            <h2 className="mb-4 font-gilroy text-[42px] font-bold leading-12.25 text-dark">
               Very Serious <br />
               Materials For Making <br />
               Furniture
             </h2>
 
             {/* Description */}
-            <p className="mb-5 font-gilroy text-[18px] leading-[33.3px] text-[dark]/80">
+            <p className="mb-5 font-gilroy text-[18px] leading-[33.3px] text-dark/80">
               Because panto was very serious about designing furniture for our environment, using
               a very expensive and famous capital but at a relatively low price
             </p>

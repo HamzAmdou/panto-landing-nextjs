@@ -39,7 +39,7 @@ function TestimonialCard({ review }: { review: Review }) {
 
         {/* Content */}
         <div className="mt-10 text-center">
-          <h3 className="mb-1 font-gilroy text-[18px] font-bold text-[dark]">
+          <h3 className="mb-1 font-gilroy text-[18px] font-bold text-dark">
             {review.name}
           </h3>
           <p className="mb-4 font-gilroy text-[12px] text-gray-medium">
@@ -96,7 +96,7 @@ export function Testimonials() {
           <h3 className="mb-4 font-gilroy text-[18px] font-semibold uppercase tracking-[3.15px] text-brand">
             testimonials
           </h3>
-          <h2 className="font-gilroy text-[42px] font-bold text-[dark]">
+          <h2 className="font-gilroy text-[42px] font-bold text-dark">
             Our Client Reviews
           </h2>
         </div>

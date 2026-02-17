@@ -27,7 +27,7 @@ export const products: Record<Category, Product[]> = {
     { name: "Corner Sofa", category: "Sofa", price: 1299, image: "/images/products/sofa-2.png" },
     { name: "Modular Sofa", category: "Sofa", price: 1899, image: "/images/products/sofa-3.png" },
     { name: "Compact Sofa", category: "Sofa", price: 799, image: "/images/products/sofa-4.png" },
-    { name: "Leather Sofa", category: "Sofa", price: 2199, image: "/images/products/sofa-5.png" },
+    { name: "Leather Sofa", category: "Sofa", price: 2199, image: "/images/products/sofa-4.png" },
   ],
   Lamp: [
     { name: "Floor Lamp", category: "Lamp", price: 199, image: "/images/products/lamp-1.png" },
