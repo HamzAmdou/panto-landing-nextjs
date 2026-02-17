@@ -291,13 +291,44 @@ All positioned absolutely within a 1440px-wide coordinate frame (`absolute inset
 - Arrow icon: 48 × 24px (inner: 37.5 × 10.8), stroke `#E58411` 1px, square cap
 - Gap from description: 24px
 
-### Materials Section
-- **Heading:** "Very serious materials for making furniture" — Gilroy-Bold 42px
-- **Description:** Gilroy-Regular 18px
-- **CTA:** "More Info" — Gilroy-Medium 14px
-- **Label:** "Materials" — Gilroy-SemiBold 18px
-- **Images:** 3 rectangles (49px, 20px radius), decorative elements
-- **Small image cards:** border-radius 29px, with secondary images (14.25px radius)
+### Materials Section (nodes 1:270–1:288)
+
+**Layout:** Two-column grid (left: content, right: images) — reversed from Experience section
+
+**Left Column — Content:**
+- Position: relX=-881, relY=743 (negative X means positioned from left edge)
+
+**Label (node 1:288):** "MATERIALS"
+- Gilroy-SemiBold 18px, uppercase, letter-spacing 3.15px, color `#E58411`
+- Size: 117 × 22px
+
+**Heading (node 1:282):** "Very serious materials for making furniture"
+- Gilroy-Bold 42px, title case, line-height 49.22px, color `#1E1E1E`
+- Size: 413 × 156px
+- Gap from label: ~22px
+
+**Description (node 1:283):** "Because panto was very serious about designing furniture for our environment, using a very expensive and famous capital but at a relatively low price"
+- Gilroy-Regular 18px, line-height 33.3px (185%), color `#1E1E1E`, opacity 0.8
+- Size: 556 × 99px
+- Gap from heading: ~20px
+
+**CTA Link (node 1:284):**
+- "More Info" — Gilroy-Medium 14px, line-height 25.9px, color `#E58411`
+- Arrow icon (node 1:286): 48 × 24px frame, inner vector 37.5 × 10.8, stroke `#E58411` 1px, square cap
+- Gap from description: ~24px
+
+**Right Column — Images:**
+- Background card (node 1:271): 495 × 422px, fill `#F8F8F8` (rgb 0.9686), cornerRadius 20px
+- Main image (node 1:272): 629 × 445px, cornerRadius 20px, image ref `61554c82d6a52e0a511f5d3e3a3ff6bbfcfafb76`
+- Blurred background (node 1:270): 555 × 423px, cornerRadius 49px, opacity 50%, layer blur 50px
+- Decorative group left (node 1:274): 223 × 250px, contains two overlapping images with blur effects
+  - Rectangle 1448: 176 × 183px, cornerRadius 29px, opacity 50%, layer blur 50px
+  - Rectangle 1450: 223 × 229px, cornerRadius 14.25px
+  - Image ref: `443cef5f2c32d6f28e6923d590e9c7a89b1297f7`
+- Decorative group right (node 1:277): 223 × 338px, contains two overlapping images with blur effects
+  - Rectangle 1448: 177 × 301px, cornerRadius 29px, opacity 50%, layer blur 50px
+  - Rectangle 1450: 223 × 317px, cornerRadius 14.25px
+  - Image ref: `3c8ea705dfc44b8035ebd10cd5adaafc9278179e`
 
 ### Testimonials
 - **Heading:** "Our Client Reviews" — Gilroy-Bold 42px

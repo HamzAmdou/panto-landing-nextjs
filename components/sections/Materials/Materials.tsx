@@ -23,40 +23,29 @@ function ArrowIcon() {
 /*  Main Section                                                       */
 /* ------------------------------------------------------------------ */
 
-export function Experience() {
+export function Materials() {
   return (
     <section className="py-20">
       <Container>
         <div className="flex flex-col items-center gap-8 md:flex-row md:gap-20">
-          {/* Left Column — Image */}
-          <div className="h-full w-full md:w-1/2">
-            <Image
-              src="/images/expricences.png"
-              alt="Interior experience"
-              width={629}
-              height={547}
-              className="h-full w-full object-cover rounded-[20px]"
-            />
-          </div>
-
-          {/* Right Column — Content */}
+          {/* Left Column — Content */}
           <div className="mx-auto w-full md:w-1/2">
             {/* Label */}
             <h3 className="mb-4 font-gilroy text-[18px] font-semibold uppercase tracking-[3.15px] text-brand">
-              experiences
+              materials
             </h3>
 
             {/* Heading */}
             <h2 className="mb-4 font-gilroy text-[42px] font-bold leading-12.25 text-[#1E1E1E]">
-              We Provide You The <br />
-              Best Experience
+              Very Serious <br />
+              Materials For Making <br />
+              Furniture
             </h2>
 
             {/* Description */}
             <p className="mb-5 font-gilroy text-[18px] leading-[33.3px] text-[#1E1E1E]/80">
-              You don't have to worry about the result because all of these interiors are made by
-              people who are professionals in their fields with an elegant and lucurious style and
-              with premium quality materials
+              Because panto was very serious about designing furniture for our environment, using
+              a very expensive and famous capital but at a relatively low price
             </p>
 
             {/* More Info CTA */}
@@ -67,6 +56,38 @@ export function Experience() {
               More Info
               <ArrowIcon />
             </a>
+          </div>
+
+          {/* Right Column — Images Grid */}
+          <div className="w-full md:w-1/2 grid grid-cols-2 md:grid-cols-3 items-center md:items-end">
+            {/* Left column - stacked images */}
+            <div className="flex flex-col gap-4">
+              <Image
+                src="/images/material1.png"
+                alt="Material 1"
+                width={176}
+                height={183}
+                className="w-full h-auto rounded-[29px]"
+              />
+              <Image
+                src="/images/material2.png"
+                alt="Material 2"
+                width={177}
+                height={301}
+                className="w-full h-auto rounded-[29px]"
+              />
+            </div>
+
+            {/* Right column - large image */}
+            <div className="md:col-span-2 col-span-1">
+              <Image
+                src="/images/material3.png"
+                alt="Materials showcase"
+                width={629}
+                height={445}
+                className="w-full h-auto object-cover rounded-[20px]"
+              />
+            </div>
           </div>
         </div>
       </Container>
