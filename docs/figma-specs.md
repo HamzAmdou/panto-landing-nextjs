@@ -183,15 +183,39 @@ All positioned absolutely within a 1440px-wide coordinate frame (`absolute inset
 
 ## 4) Sections Detail
 
-### Why Choosing Us (starts below hero)
-- **Heading:** "Why Choosing Us" — Gilroy-Bold 42px, dark navy `#0D1A39`
-- **Subtext:** Gilroy-Regular 16px, gray `#7C7C7C`
-- **3 Feature cards:**
-  - Icon in circle (with shadow)
-  - Title: Gilroy-Bold 24px (Many Choices, Luxury Facilities, Affordable Price)
-  - Description: Gilroy-Regular 16px
-  - CTA: "More Info" — Gilroy-Medium 14px, with arrow icon
-- **Layout:** Vertical stack, left-aligned
+### Why Choosing Us (nodes 1:55–1:76)
+
+**Layout:** 4-column grid within Container (1440px, px-80).
+- Col 1: Section title (left-aligned, relX=80)
+- Col 2: "Luxury facilities" card (relX=452)
+- Col 3: "Affordable Price" card (relX=764)
+- Col 4: "Many Choices" card (relX=1076)
+- Column spacing: ~312px apart, card description width: 284px
+- Section top: relY=1204 (below hero 1084px + gap)
+
+**Section title (node 1:55):** "Why\nChoosing Us" (two lines)
+- Gilroy-Bold 42px, line-height 49.22px (~117%), color `#1E1E1E`, opacity 1.0
+- Position: relX=80, relY=1242, w=242, h=104
+- Vertically centered with card content
+
+**3 Feature cards** (identical structure, different content):
+
+| Card | Title node | Desc node | CTA node | relX |
+|------|-----------|-----------|----------|------|
+| Luxury facilities | 1:69 | 1:64 | 1:65 | 452 |
+| Affordable Price | 1:76 | 1:71 | 1:72 | 764 |
+| Many Choices | 1:62 | 1:57 | 1:58 | 1076 |
+
+**Card title:** Gilroy-Bold 24px, line-height 28.13px, color `#1E1E1E`, opacity 0.9
+**Card description:** Gilroy-Regular 16px, line-height 29.6px (~185%), color `#1E1E1E`, opacity 0.8, w=284px
+**Card CTA:** "More Info" — Gilroy-Medium 14px, color `#E58411` (brand orange)
+- Arrow icon: 39×13px SVG, stroke `#E58411` 1px, square line-cap
+- Gap title→desc: ~20px, gap desc→CTA: ~14px
+
+**Card content (text):**
+- Luxury facilities: "The advantage of hiring a workspace with us is that givees you comfortable service and all-around facilities."
+- Affordable Price: "You can get a workspace of the highst quality at an affordable price and still enjoy the facilities that are oly here."
+- Many Choices: "We provide many unique work space choices so that you can choose the workspace to your liking."
 
 ### Best Selling Product
 - **Heading:** "Best Selling Product" — Gilroy-Bold 42px
