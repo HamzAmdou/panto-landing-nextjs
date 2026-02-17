@@ -1,23 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-
-/* ------------------------------------------------------------------ */
-/*  Icons                                                              */
-/* ------------------------------------------------------------------ */
-
-/** Arrow for "More Info" link — 48×24, inner 37.5×10.8 */
-function ArrowIcon() {
-  return (
-    <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
-      <path
-        d="M4.5 12H43M43 12c0 0-4.5-2.5-5.2-4.8M43 12c0 0-4 2.3-5.2 4.8"
-        stroke="#E58411"
-        strokeWidth="1"
-        strokeLinecap="square"
-      />
-    </svg>
-  );
-}
+import { ArrowIcon } from "@/components/ui/icons";
 
 /* ------------------------------------------------------------------ */
 /*  Main Section                                                       */
@@ -32,7 +15,7 @@ export function Experience() {
           <div className="h-full w-full md:w-1/2">
             <Image
               src="/images/expricences.png"
-              alt="Interior experience"
+              alt="Elegant modern living room showcasing professional interior design with premium furniture"
               width={629}
               height={547}
               className="h-full w-full object-cover rounded-[20px]"
@@ -47,15 +30,15 @@ export function Experience() {
             </h3>
 
             {/* Heading */}
-            <h2 className="mb-4 font-gilroy text-[42px] font-bold leading-12.25 text-[#1E1E1E]">
+            <h2 className="mb-4 font-gilroy text-[42px] font-bold leading-12.25 text-[dark]">
               We Provide You The <br />
               Best Experience
             </h2>
 
             {/* Description */}
-            <p className="mb-5 font-gilroy text-[18px] leading-[33.3px] text-[#1E1E1E]/80">
-              You don't have to worry about the result because all of these interiors are made by
-              people who are professionals in their fields with an elegant and lucurious style and
+            <p className="mb-5 font-gilroy text-[18px] leading-[33.3px] text-[dark]/80">
+              You don&apos;t have to worry about the result because all of these interiors are made by
+              people who are professionals in their fields with an elegant and luxurious style and
               with premium quality materials
             </p>
 

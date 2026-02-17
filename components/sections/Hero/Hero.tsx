@@ -1,8 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Navbar } from "@/components/sections/Navbar/Navbar";
 import { TooltipButton } from "@/components/TooltipButton";
+import { smoothScrollTo } from "@/lib/utils/smoothScroll";
 
 /**
  * Hero — Figma specs §3
@@ -12,6 +16,15 @@ import { TooltipButton } from "@/components/TooltipButton";
  * 3 TooltipButton color pickers positioned on the furniture
  */
 export function Hero() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Scroll to products section when search is submitted
+    smoothScrollTo("products");
+    // In a real app, searchQuery could be used to filter products
+  };
+
   return (
     <section className="relative h-271 overflow-hidden">
       {/* Background image */}
@@ -45,18 +58,23 @@ export function Hero() {
         </p>
 
         {/* Search bar — node 1:4 */}
-        <form className="mx-auto mt-9 flex h-14 w-86 items-center rounded-[42px] border border-white/60 bg-white/15 py-2 pr-2 pl-5 backdrop-blur-sm">
+        <form onSubmit={handleSearch} className="mx-auto mt-9 flex h-14 w-86 items-center rounded-[42px] border border-white/60 bg-white/15 py-2 pr-2 pl-5 backdrop-blur-sm">
           <input
+            id="search-furniture"
+            name="search"
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             aria-label="Search furniture"
             placeholder="Search furniture"
             className="h-full flex-1 bg-transparent font-gilroy text-[18px] text-white placeholder:text-white/80 outline-none"
           />
           <button
             type="submit"
-            aria-label="Search"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-3xl bg-brand"
+            aria-label="Search for furniture"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-3xl bg-brand transition-opacity hover:opacity-90"
           >
-            <Search className="h-5 w-5 text-white" />
+            <Search className="h-5 w-5 text-white" aria-hidden="true" />
           </button>
         </form>
       </Container>

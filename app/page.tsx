@@ -11,11 +11,21 @@ export default function Home() {
     <>
       <main>
         <Hero />
-        <WhyChoosingUs />
-        <BestSelling />
-        <Experience />
-        <Materials />
-        <Testimonials />
+        <section id="why-us">
+          <WhyChoosingUs />
+        </section>
+        <section id="products">
+          <BestSelling />
+        </section>
+        <section id="experience">
+          <Experience />
+        </section>
+        <section id="materials">
+          <Materials />
+        </section>
+        <section id="testimonials">
+          <Testimonials />
+        </section>
       </main>
       <Footer />
     </>

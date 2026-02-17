@@ -1,116 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, memo } from "react";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
-
-/* ------------------------------------------------------------------ */
-/*  Data                                                               */
-/* ------------------------------------------------------------------ */
-
-type Product = {
-  name: string;
-  category: string;
-  price: number;
-  image: string;
-};
-
-const categories = ["Chair", "Beds", "Sofa", "Lamp"] as const;
-type Category = (typeof categories)[number];
-
-const products: Record<Category, Product[]> = {
-  Chair: [
-    { name: "Sakarias Armchair", category: "Chair", price: 392, image: "/images/products/chair-1.png" },
-    { name: "Baltsar Chair", category: "Chair", price: 299, image: "/images/products/chair-2.png" },
-    { name: "Anjay Chair", category: "Chair", price: 519, image: "/images/products/chair-3.png" },
-    { name: "Nyantuy Chair", category: "Chair", price: 921, image: "/images/products/chair-4.png" },
-    { name: "Ekerö Chair", category: "Chair", price: 449, image: "/images/products/chair-5.png" },
-    { name: "Strandmon Chair", category: "Chair", price: 629, image: "/images/products/chair-6.png" },
-    { name: "Poäng Chair", category: "Chair", price: 349, image: "/images/products/chair-7.png" },
-    { name: "Vedbo Chair", category: "Chair", price: 559, image: "/images/products/chair-8.png" },
-  ],
-  Beds: [
-    { name: "Luxury Bed", category: "Beds", price: 1299, image: "/images/products/beds-1.png" },
-    { name: "Comfort Bed", category: "Beds", price: 899, image: "/images/products/beds-2.png" },
-    { name: "Modern Bed", category: "Beds", price: 1049, image: "/images/products/beds-3.png" },
-    { name: "Classic Bed", category: "Beds", price: 749, image: "/images/products/beds-4.png" },
-    { name: "Platform Bed", category: "Beds", price: 1149, image: "/images/products/beds-5.png" },
-  ],
-  Sofa: [
-    { name: "Velvet Sofa", category: "Sofa", price: 1599, image: "/images/products/sofa-1.png" },
-    { name: "Corner Sofa", category: "Sofa", price: 1299, image: "/images/products/sofa-2.png" },
-    { name: "Modular Sofa", category: "Sofa", price: 1899, image: "/images/products/sofa-3.png" },
-    { name: "Compact Sofa", category: "Sofa", price: 799, image: "/images/products/sofa-4.png" },
-    { name: "Leather Sofa", category: "Sofa", price: 2199, image: "/images/products/sofa-5.png" },
-  ],
-  Lamp: [
-    { name: "Floor Lamp", category: "Lamp", price: 199, image: "/images/products/lamp-1.png" },
-    { name: "Desk Lamp", category: "Lamp", price: 149, image: "/images/products/lamp-2.png" },
-    { name: "Pendant Lamp", category: "Lamp", price: 259, image: "/images/products/lamp-3.png" },
-    { name: "Wall Lamp", category: "Lamp", price: 179, image: "/images/products/lamp-4.png" },
-    { name: "Arc Lamp", category: "Lamp", price: 329, image: "/images/products/lamp-5.png" },
-    { name: "Table Lamp", category: "Lamp", price: 189, image: "/images/products/lamp-6.png" },
-  ],
-};
-
-/* ------------------------------------------------------------------ */
-/*  Icons                                                              */
-/* ------------------------------------------------------------------ */
-
-/** 5-pointed star — filled, 18×18 */
-function StarIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-      <path d="M9 1.5l2.12 4.3 4.74.69-3.43 3.34.81 4.72L9 12.26l-4.24 2.29.81-4.72L2.14 6.49l4.74-.69L9 1.5z" />
-    </svg>
-  );
-}
-
-/** Plus icon for add-to-cart button */
-function PlusIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
-      <line x1="10" y1="4" x2="10" y2="16" />
-      <line x1="4" y1="10" x2="16" y2="10" />
-    </svg>
-  );
-}
-
-/** Chevron arrow for navigation */
-function ChevronIcon({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-      <path
-        d={direction === "left" ? "M16 5l-8 8 8 8" : "M10 5l8 8-8 8"}
-        stroke="#1E1E1E"
-        strokeWidth="2.17"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-/** Arrow for "View All" link */
-function ViewAllArrow() {
-  return (
-    <svg width="38" height="11" viewBox="0 0 38 11" fill="none">
-      <path
-        d="M0.5 5.5H37M37 5.5c0 0-4.5-2.5-5.2-4.8M37 5.5c0 0-4 2.3-5.2 4.8"
-        stroke="#E58411"
-        strokeLinecap="square"
-      />
-    </svg>
-  );
-}
+import { StarIcon, ChevronIcon, PlusIcon, ArrowIcon } from "@/components/ui/icons";
+import type { Product, Category } from "@/lib/types";
+import { products, categories } from "@/lib/data/products";
 
 /* ------------------------------------------------------------------ */
 /*  Product Card                                                       */
 /* ------------------------------------------------------------------ */
 
-function ProductCard({ product }: { product: Product }) {
+const ProductCard = memo(function ProductCard({ product }: { product: Product }) {
+  const rating = product.rating ?? 5; // Default 5 stars if no rating
+
   return (
-    <div className="group flex h-[442px] w-[268px] flex-col overflow-hidden rounded-[20px] bg-white shadow-sm">
+    <div className="group flex h-[442px] w-[268px] flex-col overflow-hidden rounded-[20px] bg-white shadow-sm transition-all duration-300 hover:shadow-lg">
       {/* Image area */}
       <div className="flex h-[312px] items-center justify-center bg-[#FAFAFA] p-8">
         <Image
@@ -134,10 +39,10 @@ function ProductCard({ product }: { product: Product }) {
           {product.name}
         </h3>
 
-        {/* Stars */}
-        <div className="mb-2 flex gap-1 text-black">
+        {/* Stars with actual rating */}
+        <div className="mb-2 flex gap-1 text-brand" aria-label={`Rating: ${rating} out of 5 stars`}>
           {Array.from({ length: 5 }).map((_, i) => (
-            <StarIcon key={i} />
+            <StarIcon key={i} filled={i < rating} />
           ))}
         </div>
 
@@ -149,7 +54,7 @@ function ProductCard({ product }: { product: Product }) {
           </p>
 
           <button
-            className="flex h-[48.74px] w-[48.74px] items-center justify-center rounded-full bg-product-dark text-white transition-colors hover:bg-product-dark/80"
+            className="flex h-[48.74px] w-[48.74px] items-center justify-center rounded-full bg-product-dark text-white transition-all duration-200 hover:bg-product-dark/80 active:scale-95 focus:outline-2 focus:outline-brand"
             aria-label={`Add ${product.name} to cart`}
           >
             <PlusIcon />
@@ -158,7 +63,7 @@ function ProductCard({ product }: { product: Product }) {
       </div>
     </div>
   );
-}
+});
 
 /* ------------------------------------------------------------------ */
 /*  Main Section                                                       */
@@ -168,14 +73,24 @@ export function BestSelling() {
   const [activeTab, setActiveTab] = useState<Category>("Chair");
   const [page, setPage] = useState(0);
 
-  const allProducts = products[activeTab];
+  // Memoize products for current tab to avoid recalculation
+  const allProducts = useMemo(() => products[activeTab], [activeTab]);
+
   const pageSize = 4;
-  const totalPages = Math.ceil(allProducts.length / pageSize);
-  const currentProducts = allProducts.slice(page * pageSize, page * pageSize + pageSize);
+  const totalPages = useMemo(
+    () => Math.ceil(allProducts.length / pageSize),
+    [allProducts.length]
+  );
+
+  // Memoize current products slice
+  const currentProducts = useMemo(
+    () => allProducts.slice(page * pageSize, page * pageSize + pageSize),
+    [allProducts, page]
+  );
 
   function handleTabChange(cat: Category) {
     setActiveTab(cat);
-    setPage(0);
+    setPage(0); // Reset to first page when changing tabs
   }
 
   function handlePrev() {
@@ -190,20 +105,22 @@ export function BestSelling() {
     <section className="bg-bg-light-2 py-20">
       <Container className="flex flex-col items-center">
         {/* Heading */}
-        <h2 className="font-gilroy text-[42px] font-bold leading-[49px] text-[#1E1E1E]">
+        <h2 className="font-gilroy text-[42px] font-bold leading-[49px] text-[dark]">
           Best Selling Product
         </h2>
 
         {/* Tab bar */}
-        <div className="mt-10 flex rounded-[44px] bg-bg-light-3 p-1.5">
+        <div className="mt-10 flex rounded-[44px] bg-bg-light-3 p-1.5" role="tablist">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => handleTabChange(cat)}
+              role="tab"
+              aria-selected={activeTab === cat}
               className={`rounded-[32px] px-6 py-2.5 font-gilroy text-[18px] transition-all duration-200 ${
                 activeTab === cat
-                  ? "bg-white font-medium text-[#1E1E1E]/80 shadow-sm"
-                  : "font-normal text-[#1E1E1E]/80 hover:text-[#1E1E1E]"
+                  ? "bg-white font-medium text-[dark]/80 shadow-sm"
+                  : "font-normal text-[dark]/80 hover:text-[dark]"
               }`}
               style={{ minWidth: "84px" }}
             >
@@ -217,23 +134,29 @@ export function BestSelling() {
           {/* Left arrow */}
           <button
             onClick={handlePrev}
-            className="absolute -left-2 top-1/3 z-10 flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-[26px] bg-white shadow-[0_7px_19.5px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_7px_25px_rgba(0,0,0,0.1)]"
+            className="absolute -left-2 top-1/3 z-10 flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-[26px] bg-white shadow-[0_7px_19.5px_rgba(0,0,0,0.06)] transition-all hover:shadow-[0_7px_25px_rgba(0,0,0,0.1)] active:scale-95 focus:outline-2 focus:outline-brand"
             aria-label="Previous products"
           >
             <ChevronIcon direction="left" />
           </button>
 
-          {/* Cards */}
-          <div className="grid grid-cols-1 gap-10.5 px-10 sm:grid-cols-2 lg:grid-cols-4">
-            {currentProducts.map((product) => (
-              <ProductCard key={product.name} product={product} />
+          {/* Cards with staggered animation */}
+          <div className="grid grid-cols-1 gap-8 px-10 sm:grid-cols-2 lg:grid-cols-4">
+            {currentProducts.map((product, index) => (
+              <div
+                key={`${activeTab}-${page}-${product.name}`}
+                className="animate-in fade-in duration-300"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
 
           {/* Right arrow */}
           <button
             onClick={handleNext}
-            className="absolute -right-2 top-1/3 z-10 flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-[26px] bg-white shadow-[0_7px_19.5px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_7px_25px_rgba(0,0,0,0.1)]"
+            className="absolute -right-2 top-1/3 z-10 flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-[26px] bg-white shadow-[0_7px_19.5px_rgba(0,0,0,0.06)] transition-all hover:shadow-[0_7px_25px_rgba(0,0,0,0.1)] active:scale-95 focus:outline-2 focus:outline-brand"
             aria-label="Next products"
           >
             <ChevronIcon direction="right" />
@@ -246,7 +169,7 @@ export function BestSelling() {
           className="mt-12 flex items-center gap-3 font-gilroy text-[18px] font-medium text-brand transition-opacity hover:opacity-80"
         >
           View All
-          <ViewAllArrow />
+          <ArrowIcon className="w-[38px] h-[11px]" />
         </a>
       </Container>
     </section>

@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, DM_Sans } from "next/font/google";
+import { Inter, DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,9 +25,25 @@ const gilroy = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Panto — Furniture Landing Page",
+  title: "Panto — Premium Furniture for Minimalist & Modern Interiors",
   description:
-    "Make your interior more minimalistic & modern with Panto premium furniture.",
+    "Make your interior more minimalistic & modern with Panto premium furniture. Discover luxury facilities, affordable prices, and many unique furniture choices.",
+  keywords: ["furniture", "interior design", "minimalist", "modern", "chairs", "beds", "sofa", "lamps"],
+  authors: [{ name: "Panto" }],
+  openGraph: {
+    title: "Panto — Premium Furniture for Minimalist & Modern Interiors",
+    description:
+      "Make your interior more minimalistic & modern with Panto premium furniture. Discover luxury facilities, affordable prices, and many unique furniture choices.",
+    type: "website",
+    locale: "en_US",
+    siteName: "Panto",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panto — Premium Furniture for Minimalist & Modern Interiors",
+    description:
+      "Make your interior more minimalistic & modern with Panto premium furniture.",
+  },
 };
 
 export default function RootLayout({
@@ -48,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${dmSans.variable} ${gilroy.variable} antialiased`}
+        className={`${inter.variable} ${dmSans.variable} ${gilroy.variable} antialiased`}
       >
         {children}
       </body>

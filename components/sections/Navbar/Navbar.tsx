@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { smoothScrollTo } from "@/lib/utils/smoothScroll";
 
 /** Figma node 1:31 — Iconly/Bold/Bag, 34×34, white path */
 function BagIcon() {
@@ -62,19 +65,31 @@ export function Navbar() {
 
         {/* Nav links — node 1:10 */}
         <nav className="hidden items-center md:flex">
-          <Link href="#" className="flex items-center font-gilroy text-[18px] font-medium leading-5.25 text-white">
+          <button
+            onClick={() => smoothScrollTo("products")}
+            className="flex items-center font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
+          >
             Furniture
             <DropdownArrow />
-          </Link>
-          <Link href="#shop" className="ml-16.5 font-gilroy text-[18px] font-medium leading-5.25 text-white">
+          </button>
+          <button
+            onClick={() => smoothScrollTo("products")}
+            className="ml-16.5 font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
+          >
             Shop
-          </Link>
-          <Link href="#about" className="ml-15.5 font-gilroy text-[18px] font-medium leading-5.25 text-white">
+          </button>
+          <button
+            onClick={() => smoothScrollTo("experience")}
+            className="ml-15.5 font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
+          >
             About Us
-          </Link>
-          <Link href="#contact" className="ml-16 font-gilroy text-[18px] font-medium leading-5.25 text-white">
+          </button>
+          <button
+            onClick={() => smoothScrollTo("testimonials")}
+            className="ml-16 font-gilroy text-[18px] font-medium leading-5.25 text-white transition-opacity hover:opacity-80 focus:outline-2 focus:outline-brand focus:rounded"
+          >
             Contact
-          </Link>
+          </button>
         </nav>
 
         {/* Bag + badge — nodes 1:31 + 1:35 */}

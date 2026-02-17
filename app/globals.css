@@ -14,6 +14,7 @@
   --color-brand-light: #F6973F;
   --color-teal: #00D5C8;
   --color-dark-navy: #0D1A39;
+  --color-dark: #1E1E1E; /* Primary heading/text color */
   --color-dark-text: #1E2832;
   --color-gray-medium: #7C7C7C;
   --color-gray-light: #8D8D8D;
@@ -25,16 +26,15 @@
   --color-product-dark: #0E1B3A;
 
   /* Fonts from app/layout.tsx (next/font) */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --font-gilroy: var(--font-gilroy);
   --font-inter: var(--font-inter);
+  --font-dm-sans: var(--font-dm-sans);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
