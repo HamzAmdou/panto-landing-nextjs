@@ -259,13 +259,37 @@ All positioned absolutely within a 1440px-wide coordinate frame (`absolute inset
 - "View All" — Gilroy-Medium 18px, color `#E58411`
 - Arrow: 48 × 24px, stroke `#E58411`
 
-### Experience Section
-- **Heading:** "we provide you the best experience" — Gilroy-Bold 42px
-- **Description:** Gilroy-Regular 18px
-- **CTA:** "More Info" — Gilroy-Medium 14px
-- **Label:** "experiences" — Gilroy-SemiBold 18px
-- **Images:** 4 rectangles with various border radii (49px, 20px), decorative blurred blobs (blur 50px)
-- **Navigation arrows:** Same style as products section
+### Experience Section (nodes 1:254–1:266)
+
+**Layout:** Two-column grid (left: images, right: content)
+
+**Left Column — Images:**
+- Background cards (1:255, 1:256): 495 × 422px and 495 × 301px, fill `#F7F7F7`, cornerRadius 20px, stroke 1.523px
+- Main image (1:257): 629 × 445px, cornerRadius 20px, image ref `4a4b57d91dde88ae6788c27acd5fc55158eb2f11`
+  - Filters: contrast +0.063, highlights +0.109
+- Blurred background (1:254): 555 × 423px, cornerRadius 49px, opacity 50%, layer blur 50px
+- Position: relX=20, relY=2768 (main section)
+
+**Right Column — Content:**
+- Position: relX=743, relY=2733
+
+**Label (node 1:266):** "experiences"
+- Gilroy-SemiBold 18px, uppercase, letter-spacing 3.15px, color `#E58411`
+
+**Heading (node 1:260):** "we provide you the best experience"
+- Gilroy-Bold 42px, title case, line-height 49.22px, color `#1E1E1E`
+- Size: 413 × 104px
+- Gap from label: 42px
+
+**Description (node 1:261):** "You don't have to worry about the result because all of these interiors are made by people who are professionals in their fields with an elegant and lucurious style and with premium quality materials"
+- Gilroy-Regular 18px, line-height 33.3px (185%), color `#1E1E1E`, opacity 0.8
+- Size: 556 × 132px
+- Gap from heading: 20px
+
+**CTA Link (node 1:262):**
+- "More Info" — Gilroy-Medium 14px, line-height 25.9px, color `#E58411`
+- Arrow icon: 48 × 24px (inner: 37.5 × 10.8), stroke `#E58411` 1px, square cap
+- Gap from description: 24px
 
 ### Materials Section
 - **Heading:** "Very serious materials for making furniture" — Gilroy-Bold 42px
