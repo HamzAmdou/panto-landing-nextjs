@@ -110,46 +110,46 @@ function ViewAllArrow() {
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="group flex flex-col">
-      {/* Image container */}
-      <div className="relative h-[280px] w-full overflow-hidden rounded-[20px] bg-white">
+    <div className="group flex h-[442px] w-[268px] flex-col overflow-hidden rounded-[20px] bg-white shadow-sm">
+      {/* Image area */}
+      <div className="flex h-[312px] items-center justify-center bg-[#FAFAFA] p-8">
         <Image
           src={product.image}
           alt={product.name}
-          fill
-          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 268px"
+          width={218}
+          height={256}
+          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
-      {/* Info */}
-      <div className="mt-5 flex flex-col gap-2">
+      {/* Info area */}
+      <div className="flex flex-1 flex-col p-6">
         {/* Category */}
-        <span className="font-inter text-[17px] leading-[20px] text-gray-light">
+        <h4 className="mb-1 font-inter text-[16.76px] leading-[20.28px] text-gray-light">
           {product.category}
-        </span>
+        </h4>
 
         {/* Name */}
-        <h3 className="font-inter text-[21px] font-semibold leading-[26px] text-product-dark">
+        <h3 className="mb-2 font-inter text-[21.33px] font-semibold leading-[25.81px] text-product-dark">
           {product.name}
         </h3>
 
         {/* Stars */}
-        <div className="flex gap-0.5 text-brand">
+        <div className="mb-2 flex gap-1 text-black">
           {Array.from({ length: 5 }).map((_, i) => (
             <StarIcon key={i} />
           ))}
         </div>
 
         {/* Price + Add button */}
-        <div className="mt-1 flex items-center justify-between">
+        <div className="mt-auto flex items-center justify-between">
           <p className="font-inter font-semibold text-product-dark">
-            <span className="text-[15px]">$</span>
-            <span className="text-[21px]">{product.price}</span>
+            <sup className="text-[15.23px]">$</sup>
+            <span className="text-[21.33px]">{product.price}</span>
           </p>
 
           <button
-            className="flex h-[49px] w-[49px] items-center justify-center rounded-full bg-product-dark text-white transition-colors hover:bg-product-dark/80"
+            className="flex h-[48.74px] w-[48.74px] items-center justify-center rounded-full bg-product-dark text-white transition-colors hover:bg-product-dark/80"
             aria-label={`Add ${product.name} to cart`}
           >
             <PlusIcon />
@@ -224,7 +224,7 @@ export function BestSelling() {
           </button>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 gap-8 px-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-10.5 px-10 sm:grid-cols-2 lg:grid-cols-4">
             {currentProducts.map((product) => (
               <ProductCard key={product.name} product={product} />
             ))}
