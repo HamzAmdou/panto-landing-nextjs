@@ -3,6 +3,7 @@ import { WhyChoosingUs } from "@/components/sections/WhyChoosingUs/WhyChoosingUs
 import { BestSelling } from "@/components/sections/BestSelling/BestSelling";
 import { Experience } from "@/components/sections/Experience/Experience";
 import { Materials } from "@/components/sections/Materials/Materials";
+import { Testimonials } from "@/components/sections/Testimonials/Testimonials";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <BestSelling />
       <Experience />
       <Materials />
+      <Testimonials />
     </main>
   );
 }
