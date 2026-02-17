@@ -17,9 +17,12 @@ Entry node: 1:2
 | 1:18 | Panto | TEXT | Logo |
 | 1:20 | Make your interior… | TEXT | Hero heading |
 | 1:21 | Turn your room… | TEXT | Hero subtitle |
-| 1:22–1:28 | Groups | GROUP | Social / scroll indicators |
-| 1:31 | Bag | FRAME | Cart icon |
-| 1:35–1:38 | Groups | GROUP | Hero decorative elements |
+| 1:22 | Group 4148 | GROUP | Glass dot indicator (32×32), bottom-left |
+| 1:25 | Group 4151 | GROUP | Glass dot indicator (32×32), center-bottom |
+| 1:28 | Group 4154 | GROUP | Glass dot indicator (37×37), bottom-right |
+| 1:31 | Bag | FRAME | Cart bag icon (34×34, white path) |
+| 1:35 | Group 4157 | GROUP | Cart badge (orange ellipse with "0") |
+| 1:38 | Group 4160 | GROUP | Color picker widget (112×138) |
 | 1:55 | Why Choosing Us | TEXT | Section heading |
 | 1:57 | We provide many… | TEXT | Section description |
 | 1:58–1:76 | Groups / Texts | MIXED | 3 feature cards (Many Choices, Luxury Facilities, Affordable Price) |
@@ -55,8 +58,7 @@ Entry node: 1:2
 | bg-light-1 | `#F9F9F9` | 249, 249, 249 | Light section background |
 | bg-light-2 | `#F7F7F7` | 247, 247, 247 | Alternate section background |
 | bg-light-3 | `#EEEEEE` | 238, 238, 238 | Tab bar background, borders |
-| white | `#FFFFFF` | 255, 255, 255 | Main background, hero text |
-| black | `#000000` | 0, 0, 0 | Icons |
+| white | `#FFFFFF` | 255, 255, 255 | Main background, hero text, navbar icons |
 
 ### Typography
 
@@ -66,8 +68,8 @@ Entry node: 1:2
 | H2 Section | Gilroy-Bold | bold | 42px | auto | 0 | Section headings (Why Choosing Us, Best Selling, etc.) |
 | H3 Card | Gilroy-Bold | bold | 24px | auto | 0 | Feature card titles |
 | Logo | Gilroy-Bold | bold | 28px | intrinsic | 0.28px | Brand logo "Panto", title-case |
-| Nav link | Gilroy-Medium | medium | 18px | 150% (27px) | 0 | Navigation links |
-| Body large | Gilroy-Regular | regular | 24px | 160% (38.4px) | 0 | Hero subtitle |
+| Nav link | Gilroy-Medium | medium | 18px | 21px | 0 | Navigation links |
+| Body large | Gilroy-Regular | regular | 24px | 160% (38.4px) | 0 | Hero subtitle (opacity 0.80) |
 | Body | Gilroy-Regular | regular | 18px | ~160% | 0 | Section descriptions |
 | Body small | Gilroy-Regular | regular | 16px | auto | 0 | Feature card descriptions |
 | CTA text | Gilroy-Medium | medium | 14px | auto | 0 | "More Info" buttons |
@@ -105,7 +107,8 @@ Entry node: 1:2
 
 **Blur:**
 - Search bar: `backdrop-blur(8px)`
-- Hero social icons: `backdrop-blur(8px)`
+- Glass dot indicators: `backdrop-blur(4px)`
+- Color picker pill: `backdrop-blur(4px)`
 - Product card price bg: `blur(24px)` (layer blur)
 - Section decorative blobs: `blur(50px)` (layer blur)
 - Testimonial card bg: `backdrop-blur(11px)`
@@ -123,34 +126,60 @@ Entry node: 1:2
 
 ## 2) Navbar Specs
 
-- **Height:** ~40px content area (logo to icons)
-- **Padding X:** ~80px (logo at x=-881, frame edge at x=-961)
-- **Logo:** "Panto" — Gilroy-Bold 28px, white, title-case, letter-spacing 0.28px
-- **Links:** Furniture, Shop, About Us, Contact — Gilroy-Medium 18px, white
-- **Icons:** Search icon (magnifier in group), Bag icon (34×34px, black)
-- **Position:** Overlaid on hero image (transparent background)
-- **Z-index:** Above hero image
+- **Height:** 35px content area (grid row)
+- **Top padding:** 40px from viewport top
+- **Layout:** CSS Grid `grid-cols-[1fr_auto_1fr]`, centered within Container (max-w 1440px, px 80px)
+- **Logo (node 1:18):** "Panto" — Gilroy-Bold 28px, white, letter-spacing 0.28px, justify-self-start
+- **Nav links (node 1:10):** Gilroy-Medium 18px, line-height 21px, white
+  - Furniture (with dropdown arrow node 1:14, 10×6 white chevron) → Shop: `ml-66px`
+  - Shop → About Us: `ml-62px`
+  - About Us → Contact: `ml-64px`
+- **Dropdown arrow (node 1:14):** 10×6px white SVG chevron, `ml-2` from "Furniture" text
+- **Bag icon (node 1:31):** 34×34px, inline SVG, white fill (`#FFFFFF`) — NOT black
+- **Cart badge (node 1:35):** Orange ellipse 20×26px (`#E58411`) with "0" white vector path, absolute positioned `top-[3px] left-[20px]` relative to bag
+- **Position:** Overlaid on hero image (`absolute inset-x-0 top-0 z-20`)
+- **Hidden on mobile:** Nav links use `hidden md:flex`
 
 ## 3) Hero Specs
 
 - **Section height:** 1084px (background image)
-- **Background image:** Full-width image (imageRef: `d2bee09011d0ef5c5aab59b69714774a45812d7d`)
-  - Filters: contrast +0.07, saturation +0.14, shadows -0.18
-- **Overlay gradient:** Linear top→bottom, transparent at 86% → white at 100%
-- **Title (H1):** "Make your interior more minimalistic & modern"
-  - Gilroy-Bold 80px, white, title-case
-  - Width: 861px, centered
+- **Background image (node 1:3):** Full-width image (imageRef: `d2bee09011d0ef5c5aab59b69714774a45812d7d`)
+  - Filters: `contrast(1.07) saturate(1.14) brightness(0.82)`
+- **Overlay gradient:** `linear-gradient(180deg, transparent 0%, transparent 86%, white 100%)`
+- **Content:** Centered within Container, `pt-200px`
+- **Title — H1 (node 1:20):** "Make Your Interior More / Minimalistic & Modern"
+  - Gilroy-Bold 80px, white
+  - `max-w-900px`, centered, two `<span>` blocks with `whitespace-nowrap`
   - Line-height: 130% (104px), letter-spacing: -0.8px
-- **Subtitle:** "Turn your room with panto into a lot more minimalist and modern with ease and speed"
-  - Gilroy-Regular 24px, white
+- **Subtitle (node 1:21):** "Turn your room with panto into a lot more minimalist and modern with ease and speed"
+  - Gilroy-Regular 24px, white, **opacity: 0.80**
   - Width: 606px, centered
   - Line-height: 160% (38.4px)
-- **Search bar:** 344 × 56px, white bg with `backdrop-blur(8px)`, border-radius 42px
+  - Margin-top: 14px below title
+- **Search bar (node 1:4):** 344 × 56px, `bg-white/15`, `border border-white/60`, `backdrop-blur(8px)`, border-radius 42px
   - Padding: 8px top/bottom/right, 20px left
-  - Contains: "Search furniture" placeholder (Gilroy-Regular 18px, white 80% opacity)
-  - Orange search button: 40×40px, border-radius 24px, fill `#E58411`
-- **Spacing:** Title top ~160px from nav, subtitle ~14px below title, search bar ~36px below subtitle
-- **Decorative elements:** Social media icons (left side), scroll indicators (bottom), floating UI elements
+  - Placeholder: "Search furniture" — Gilroy-Regular 18px, `white/80` opacity
+  - Orange search button: 40×40px, border-radius 24px, fill `#E58411`, contains Search icon (lucide-react)
+  - Margin-top: 36px below subtitle
+
+### Hero Decorative Elements
+
+All positioned absolutely within a 1440px-wide coordinate frame (`absolute inset-0 mx-auto max-w-[1440px]`).
+
+- **Glass dot (node 1:22):** 32×32px at `left:103px, top:743px`
+  - `backdrop-blur(4px)`, `bg-white/20`, `border border-white/60`, rounded-full
+  - Inner dot: 9×9px white circle
+- **Glass dot (node 1:25):** 32×32px at `left:800px, top:777px`
+  - Same style as node 1:22
+- **Glass dot (node 1:28):** 37×37px at `left:1369px, top:809px`
+  - Same style, slightly larger; inner dot: 11×11px white circle
+- **Color picker (node 1:38):** 112×138px at `left:249px, top:585px`
+  - Glass pill shape (rounded rect with pointed bottom, `bg-white/20`, `border-white/60`)
+  - 3 color circles (r=12, stroke white 2px):
+    - Orange `#E58411` (selected, with white checkmark icon)
+    - Teal `#00D6C9`
+    - Gray `#7C7C7C`
+  - Pointer circle below: outer r=28 (`bg-white/20`, `stroke-white/60`), inner r=9 white solid
 
 ## 4) Sections Detail
 

@@ -1,11 +1,19 @@
 import Image from "next/image";
+import { Search } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Navbar } from "@/components/sections/Navbar/Navbar";
-import { Search } from "lucide-react";
+import { TooltipButton } from "@/components/TooltipButton";
 
+/**
+ * Hero — Figma specs §3
+ * Section height: 1084px
+ * BG image: contrast +0.07, saturate +0.14, brightness 0.82
+ * Gradient overlay: transparent → white fade at 86%–100%
+ * 3 TooltipButton color pickers positioned on the furniture
+ */
 export function Hero() {
   return (
-    <section className="relative h-[1084px] overflow-hidden">
+    <section className="relative h-271 overflow-hidden">
       {/* Background image */}
       <Image
         src="/images/hero-bg.png"
@@ -13,38 +21,55 @@ export function Hero() {
         fill
         priority
         className="object-cover"
-        style={{ filter: "contrast(1.07) saturate(1.14)" }}
+        style={{ filter: "contrast(1.07) saturate(1.14) brightness(0.82)" }}
       />
 
-      {/* Overlay gradient: transparent -> white at bottom */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_86%,rgba(255,255,255,1)_100%)]" />
+      {/* Overlay gradient: transparent at 86% → white at 100% */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_86%,white_100%)]" />
 
       {/* Navbar over hero */}
       <Navbar />
 
       {/* Content */}
-      <Container className="relative pt-[160px] text-center">
-        <h1 className="mx-auto w-[861px] max-w-full text-[80px] font-bold leading-[104px] tracking-[-0.8px] text-white">
-  <span className="block">Make Your Interior More</span>
-  <span className="block">Minimalistic & Modern</span>
-</h1>
+      <Container className="relative pt-50 text-center">
+        {/* H1 — node 1:20 */}
+        <h1 className="mx-auto max-w-225 font-gilroy text-[80px] font-bold leading-26 tracking-[-0.8px] text-white">
+          <span className="block whitespace-nowrap">Make Your Interior More</span>
+          <span className="block whitespace-nowrap">Minimalistic &amp; Modern</span>
+        </h1>
 
-        {/* Search bar */}
-        <form className="mx-auto mt-[36px] flex h-[56px] w-[344px] items-center rounded-[42px] border border-white/60 bg-white/15 py-[8px] pr-[8px] pl-[20px] backdrop-blur-[8px]">
+        {/* Subtitle — node 1:21, opacity 0.80 */}
+        <p className="mx-auto mt-3.5 w-151.5 max-w-full font-gilroy text-[24px] font-normal leading-[38.4px] text-white opacity-80">
+          Turn your room with panto into a lot more minimalist and modern with
+          ease and speed
+        </p>
+
+        {/* Search bar — node 1:4 */}
+        <form className="mx-auto mt-9 flex h-14 w-86 items-center rounded-[42px] border border-white/60 bg-white/15 py-2 pr-2 pl-5 backdrop-blur-sm">
           <input
             aria-label="Search furniture"
             placeholder="Search furniture"
-            className="h-full flex-1 bg-transparent text-[18px] text-white placeholder:text-white/80 outline-none"
+            className="h-full flex-1 bg-transparent font-gilroy text-[18px] text-white placeholder:text-white/80 outline-none"
           />
           <button
             type="submit"
             aria-label="Search"
-            className="flex h-[40px] w-[40px] items-center justify-center rounded-[24px] bg-brand"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-3xl bg-brand"
           >
             <Search className="h-5 w-5 text-white" />
           </button>
         </form>
       </Container>
+
+      {/* 3 TooltipButton color pickers — exact Figma coords in 1440px frame */}
+      <div className="pointer-events-none absolute inset-0 mx-auto max-w-360">
+        {/* Node 1:22 — left:103, top:743 */}
+        <TooltipButton checkedIndex={0} className="left-25.75 top-185.75" />
+        {/* Node 1:25 — left:800, top:777 */}
+        <TooltipButton checkedIndex={1} className="left-200 top-210" />
+        {/* Node 1:28 — left:1369, top:809 */}
+        <TooltipButton checkedIndex={2} size="lg" className="left-400 top-230" />
+      </div>
     </section>
   );
 }

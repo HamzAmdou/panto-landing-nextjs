@@ -3,27 +3,28 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-
-  /* Brand (Panto) */
-  --brand: 229 132 17; /* #E58411 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-brand: rgb(var(--brand));
 
+  /* Brand palette — docs/figma-specs.md */
+  --color-brand: #E58411;
+  --color-brand-light: #F6973F;
+  --color-teal: #00D5C8;
+  --color-dark-navy: #0D1A39;
+  --color-dark-text: #1E2832;
+  --color-gray-medium: #7C7C7C;
+  --color-gray-light: #8D8D8D;
+  --color-bg-light-1: #F9F9F9;
+  --color-bg-light-2: #F7F7F7;
+  --color-bg-light-3: #EEEEEE;
 
   /* Fonts from app/layout.tsx (next/font) */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-gilroy: var(--font-gilroy);
 }
 
 body {
@@ -33,7 +34,6 @@ body {
 }
 
 @layer utilities {
-  /* Consistent vertical spacing for sections */
   .section-y {
     @apply py-16 sm:py-20 lg:py-24;
   }
