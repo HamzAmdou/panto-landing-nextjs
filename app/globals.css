@@ -21,10 +21,14 @@
   --color-bg-light-2: #F7F7F7;
   --color-bg-light-3: #EEEEEE;
 
+  /* Extra brand colors */
+  --color-product-dark: #0E1B3A;
+
   /* Fonts from app/layout.tsx (next/font) */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-gilroy: var(--font-gilroy);
+  --font-inter: var(--font-inter);
 }
 
 body {

@@ -217,22 +217,47 @@ All positioned absolutely within a 1440px-wide coordinate frame (`absolute inset
 - Affordable Price: "You can get a workspace of the highst quality at an affordable price and still enjoy the facilities that are oly here."
 - Many Choices: "We provide many unique work space choices so that you can choose the workspace to your liking."
 
-### Best Selling Product
-- **Heading:** "Best Selling Product" — Gilroy-Bold 42px
-- **Tab bar:** 348 × 57px, bg `#EEEEEE`, border-radius 44px
-  - Tabs: Chair (active, orange bg), Beds, Sofa, Lamp
-  - Each tab: 84 × 45px, border-radius 32px
-  - Active tab text: Gilroy-Medium 18px
-  - Inactive tab text: Gilroy-Regular 18px
-- **Product cards (4 in a row):**
-  - Image with rounded corners (20px)
-  - Blurred price tag overlay (blur 24px)
-  - Product name: Inter 600 ~21px
-  - Category: Inter 400 ~17px
-  - Price: "$" Inter 600 ~15px + number Inter 600 ~21px
-  - Cart button: circular (31px radius)
-  - Products: Sakarias Armchair ($392), Baltsar Chair ($299), Anjay Chair ($519), Nyantuy Chair ($921)
-- **Navigation:** Left/right arrows (50×50px circles, shadow), "View All" link
+### Best Selling Product (nodes 1:78–1:251)
+
+**Section background (node 1:78):** `1440 × 906px`, fill `#F7F7F7`, relY=1504
+
+**Heading (node 1:81):** "Best Selling Product"
+- Gilroy-Bold 42px, line-height 49.22px, color `#1E1E1E`
+- Position: relX=525, relY=1554 (centered in section)
+
+**Tab bar (node 1:82):** 348 × 57px, bg `#EEEEEE`, border-radius 44px, padding 6px
+- Layout: horizontal, 4 tabs
+- Each tab: 84 × 45px, border-radius 32px, centered text
+- Active tab: bg `#FFFFFF`, Gilroy-Medium 18px, color `#1E1E1E/80`
+- Inactive tab: bg transparent, Gilroy-Regular 18px, color `#1E1E1E/80`
+- Tabs: Chair (active), Beds, Sofa, Lamp
+- Position: relX=546, relY=1638
+
+**Product cards (node 1:93):** 4 cards in a row, relX=121, relY=1775
+- Card size: 268 × 492px (bg rect: 268 × 442), cornerRadius 20px, bg `#FFFFFF`
+- Card gap: ~42px
+- Product image: ~218 × 256px at top, gradient overlay below
+- Typography:
+  - Category: Inter 400 16.76px, line-height 20.28px, color `#8D8D8D`
+  - Product name: Inter 600 21.33px, line-height 25.81px, color `#0E1B3A`
+  - Price "$": Inter 600 15.23px, color `#0E1B3A`
+  - Price amount: Inter 600 21.33px, color `#0E1B3A`
+- Star rating: 5 filled stars, 18.28px, fill `#000000`
+- Add button: 48.74px circle, bg `#0E1B3A`, white "+" icon
+- Products (Chair tab):
+  - Sakarias Armchair — $392 (image: chair-1.png)
+  - Baltsar Chair — $299 (image: chair-2.png)
+  - Anjay Chair — $519 (image: chair-3.png)
+  - Nyantuy Chair — $921 (image: chair-4.png)
+
+**Navigation arrows:**
+- Left arrow (node 1:245): 50 × 50px, bg white, cornerRadius 26px, shadow `0 7px 19.5px rgba(0,0,0,0.06)`, arrow stroke `#1E1E1E` 2.17px
+- Right arrow (node 1:242): same style, relX=1294
+- Position: relY=1996 (below cards)
+
+**View All (node 1:248):** relX=665, relY=2327
+- "View All" — Gilroy-Medium 18px, color `#E58411`
+- Arrow: 48 × 24px, stroke `#E58411`
 
 ### Experience Section
 - **Heading:** "we provide you the best experience" — Gilroy-Bold 42px
